@@ -36,7 +36,7 @@ class PotholeDetector(Node):
 
     def detect_pothole(self, sensor_data):
         threshold = 2.5
-        return np.any(sensor_data > threshold)
+        return (sensor_data[4] > threshold) #sensor_data[4]에 인공지능이 계산한 값 저장. 만약에 threshold보다 값이 크면 True를 반환.
 
 def main(args=None):
     rclpy.init(args=args)
