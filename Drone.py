@@ -4,6 +4,7 @@ from std_msgs.msg import Float32MultiArray  # 적절한 메시지 타입을 임�
 import numpy as np
 import requests
 import json
+import time
 
 class PotholeDetector(Node):
     def __init__(self):
@@ -22,7 +23,8 @@ class PotholeDetector(Node):
                 "latitude": sensor_data[0],  # sensor_data에서 위도 값 가져오기
                 "longitude": sensor_data[1],  # sensor_data에서 경도 값 가져오기
                 "altitude": sensor_data[2],  # sensor_data에서 고도 값 가져오기
-                "pothole_size": "medium"  # 이 부분은 필요에 따라 계산하거나 추가로 설정 가능
+                "pothole_size": "medium",  # 이 부분은 필요에 따라 계산하거나 추가로 설정 가능
+                "timestamp" : time.time()
             }
             try:
                 # AWS API Gateway에 HTTP POST 요청 전송
