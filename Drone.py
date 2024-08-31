@@ -23,7 +23,7 @@ class PotholeDetector(Node):
                 "latitude": sensor_data[0],  # sensor_data에서 위도 값 가져오기
                 "longitude": sensor_data[1],  # sensor_data에서 경도 값 가져오기
                 "altitude": sensor_data[2],  # sensor_data에서 고도 값 가져오기
-                "pothole_size": "medium",  # 이 부분은 필요에 따라 계산하거나 추가로 설정 가능
+                "pothole_size": sensor_data[3],  #sensor_data에서 포트홀 사이즈 값 가져오기 0 -> 작은 사이즈 | 1 -> 중간사이즈 | 2 -> 큰 사이즈
                 "timestamp" : time.time()
             }
             try:
