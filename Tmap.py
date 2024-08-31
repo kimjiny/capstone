@@ -18,25 +18,26 @@ def receive_pothole_data():
     # T맵 API로 지도에 포트홀 위치 표시
     display_on_tmap(data)
 
+    webhook_url = "https://discord.com/api/webhooks/1279466397759438929/M8sRC8Cf01LJQMLNTvRM2oBYCFMVm3xG_4M-TX2on3jG5HY4p4vkG6WZS5mF9d3yzmwG"  # 앞에서 복사한 웹훅 URL을 여기에 붙여넣기
     # 웹훅을 통해 관리자에게 알림 전송
-    notify_admin_via_webhook(data)
+    send_discord_message(data)
 
     return jsonify({'status': 'success'}), 200
 
-def notify_admin_via_webhook(data):
-    # 웹훅 URL 설정
-    webhook_url = "https://your-webhook-url.com/notify"
-    webhook_data = {
-        "text": f"New pothole detected and displayed on Tmap: {data['latitude']}, {data['longitude']} (Size: {data['pothole_size']})"
+def send_discord_message(webhook_url, data):
+    
+    data = {
+        "content": f"New pothole detected and displayed on Tmap: {data['latitude']}, {data['longitude']} (Size: {data['pothole_size']})",  # 보낼 메시지 내용
+        "username": "Drone Bot"  # 디스코드에 표시될 봇 이름
     }
-    
-    # 웹훅으로 POST 요청 전송
-    response = requests.post(webhook_url, json=webhook_data)
-    
-    if response.status_code == 200:
+
+    result = requests.post(webhook_url, json=data)
+
+    if result.status_code == 200:
         print("Admin notified successfully.")
     else:
-        print(f"Failed to notify admin: {response.status_code}, {response.text}")
+        print(f"Failed to notify admin: {result.status_code}, {result.content}")
+
 
 def save_to_database(data):
     # 예: SQLite 데이터베이스에 포트홀 데이터를 저장
