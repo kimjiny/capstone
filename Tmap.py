@@ -18,9 +18,9 @@ def receive_pothole_data():
     # T맵 API로 지도에 포트홀 위치 표시
     display_on_tmap(data)
 
-    webhook_url = "https://discord.com/api/webhooks/1279466397759438929/M8sRC8Cf01LJQMLNTvRM2oBYCFMVm3xG_4M-TX2on3jG5HY4p4vkG6WZS5mF9d3yzmwG"  # 앞에서 복사한 웹훅 URL을 여기에 붙여넣기
-    # 웹훅을 통해 관리자에게 알림 전송
-    send_discord_message(data)
+    webhook_url = "https://discord.com/api/webhooks/1279705802353152040/tS4Hc9Dw0MMKy8XZlau3652AveWq7Che0Lg0MlxfpLYUWMZf52900ozbK-qPZYqmDGoR"  # 앞에서 복사한 웹훅 URL을 여기에 붙여넣기
+    # 웹훅을 통해 디스코드 알림 전송
+    send_discord_message(data) #이건 ok.
 
     return jsonify({'status': 'success'}), 200
 
