@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 import sqlite3
 import requests
-
+public_url = ngrok.connect(5000)
 app = Flask(__name__)
 
 @app.route('/api/pothole', methods=['POST'])
@@ -86,4 +86,4 @@ def display_on_tmap(data):
         print(f"Failed to display pothole on Tmap: {response.status_code}, {response.text}")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=5000,debug=True)
