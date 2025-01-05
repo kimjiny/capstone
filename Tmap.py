@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import sqlite3
+from pyngrok import ngrok
 import requests
 public_url = ngrok.connect(5000)
 app = Flask(__name__)
